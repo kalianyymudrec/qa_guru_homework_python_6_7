@@ -14,13 +14,13 @@ def test_download_png_with_api():
     with open(path_png, 'wb') as file:
         file.write(response.content)
 
-    assert os.path.exists(path_png)
-
     with open(path_png, 'rb') as file:
         selenium_png = file.read()
         print(len(selenium_png))
 
     size = os.path.getsize(path_png)
+
     assert size == 30803
+    assert os.path.exists(path_png)
 
     os.remove(path_png)

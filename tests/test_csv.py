@@ -13,11 +13,11 @@ def test_open_csv():
         csvwriter.writerow(['Anna', 'Pavel', 'Peter'])
         csvwriter.writerow(['Alex', 'Serj', 'Yana'])
 
-        assert os.path.exists(path_to_csv)
-
     with open(path_to_csv) as csvfile:
         csvreader = csv.reader(csvfile)
         for row in csvreader:
+
             assert len(row) == 3
+            assert os.path.exists(path_to_csv)
 
     os.remove(path_to_csv)

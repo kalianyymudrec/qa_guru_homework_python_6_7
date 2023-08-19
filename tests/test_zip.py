@@ -25,16 +25,16 @@ def test_create_zip():
             add_file = os.path.join(path_resources, file)
             archive.write(add_file, arcname=file)
 
-    assert os.path.exists(path_zip)
-
     with ZipFile(path_zip) as archive:
-        assert len(source) == len(archive.infolist())
 
         files_list = archive.namelist()
         counter = 0
         for name in source:
             if is_exist_zip(name, files_list):
                 counter += 1
+
         assert counter == len(source)
+        assert os.path.exists(path_zip)
+        assert len(source) == len(archive.infolist())
 
     os.remove(path_zip)
